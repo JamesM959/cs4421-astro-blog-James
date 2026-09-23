@@ -1,0 +1,85 @@
+---
+interface Props {
+	name?: string;
+	title?: string;
+	bio?: string;
+}
+
+const {
+	name = 'James Miller',
+	title = 'Current ISE student future prodogy',
+	bio = 'I live on cute cat videos and positive compliments',
+} = Astro.props;
+---
+
+{
+	(name || bio) && (
+		<aside class="author-bio">
+			<div class="author-header">
+				<div class="avatar" aria-hidden="true">{name.charAt(0).toUpperCase()}</div>
+				<div class="author-meta">
+					<p class="eyebrow">Written by</p>
+					<h2>{name}</h2>
+					{title && <p class="role">{title}</p>}
+				</div>
+			</div>
+			{bio && <p class="bio">{bio}</p>}
+		</aside>
+	)
+}
+
+<style>
+	.author-bio {
+		max-width: 720px;
+		margin: 3rem auto 0;
+		padding: 1.25rem 1.5rem;
+		border: 1px solid rgba(var(--gray), 0.2);
+		border-radius: 16px;
+		background: rgba(var(--gray-light), 0.35);
+		box-shadow: var(--box-shadow);
+	}
+
+	.author-header {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.avatar {
+		display: grid;
+		place-items: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: 9999px;
+		background: linear-gradient(135deg, rgb(var(--gray-dark)), rgb(var(--gray)));
+		color: white;
+		font-size: 1.25rem;
+		font-weight: 700;
+	}
+
+	.author-meta h2 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+
+	.eyebrow {
+		margin: 0 0 0.15rem;
+		font-size: 0.72rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgb(var(--gray));
+	}
+
+	.role {
+		margin: 0.1rem 0 0;
+		font-size: 0.92rem;
+		color: rgb(var(--gray));
+	}
+
+	.bio {
+		margin: 0;
+		line-height: 1.7;
+		color: rgb(var(--gray-dark));
+	}
+</style>

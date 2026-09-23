@@ -1,0 +1,31 @@
+---
+import AuthorBio from './AuthorBio.astro';
+
+interface Author {
+	name?: string;
+	title?: string;
+	bio?: string;
+	avatarText?: string;
+}
+
+interface Props {
+	authors?: Author[];
+}
+
+const { authors = [] } = Astro.props;
+---
+
+{authors.length > 0 && (
+	<div class="author-list">
+		{authors.map((author) => (
+			<AuthorBio {...author} />
+		))}
+	</div>
+)}
+
+<style>
+	.author-list {
+		display: grid;
+		gap: 1.5rem;
+	}
+</style>

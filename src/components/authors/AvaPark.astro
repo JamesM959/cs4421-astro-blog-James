@@ -1,0 +1,19 @@
+---
+import AuthorBio from './AuthorBio.astro';
+
+interface Props {
+	name?: string;
+	title?: string;
+	bio?: string;
+	avatarText?: string;
+}
+
+const props = Astro.props;
+---
+
+<AuthorBio
+	name={props.name ?? 'Ava Park'}
+	title={props.title ?? 'Product storyteller'}
+	bio={props.bio ?? 'Ava helps teams turn complicated ideas into clear, useful narratives that humans actually want to read.'}
+	avatarText={props.avatarText ?? 'A'}
+/>
